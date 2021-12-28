@@ -1,0 +1,13 @@
+$secondary: #ffc107;
+$primary:#6610f2;
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,500&display=swap');
+
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+ 
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+
+body{
+    font-family: 'Roboto', sans-serif;
+}
