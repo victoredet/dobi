@@ -55,7 +55,7 @@
                     </tbody>
                 </table>
                 <div class="user-image">
-                    <img src="../assets/logo.png" alt="">
+                   
                 </div>
             </div>
             <div class="col-md-6">
