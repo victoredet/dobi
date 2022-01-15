@@ -7,8 +7,8 @@
                     <img src="../assets/dobi.png" alt="">
                 </div>
                 <div class="form-part container">
-                    <form @submit.prevent class="col-9 mx-auto  border-bottom border-2">
-                        <div class="form-group">
+                    <form @submit.prevent class="col-9 mx-auto">
+                        <div class="form-group py-5">
                             <label>Tracking ID:</label>
                             <input type="text" class="form-control" placeholder="enter your product ID">
                             <button class="btn btn-primary col-12 my-2">Search</button>
@@ -16,6 +16,7 @@
                     </form>
                     <hr>
                     <h2 class="text-center">search result</h2>
+                    <iframe src="" frameborder="0"></iframe>
                 </div>
             </div>
         </div>
