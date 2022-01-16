@@ -3,6 +3,7 @@ import Login from '../pages/Login.vue'
 import Register from '../pages/Register.vue'
 import Dashboard from '../pages/Dashboard.vue'
 import Tracking from '../pages/Tracking.vue'
+import Admin from '../pages/Admin.vue'
 
 
 export const router = createRouter({
@@ -23,6 +24,10 @@ export const router = createRouter({
       {
         path: '/tracking',
         component: Tracking,
+      },
+      {
+        path: '/admin',
+        component: Admin,
       }
   ]
 });

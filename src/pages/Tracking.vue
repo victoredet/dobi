@@ -16,7 +16,11 @@
                     </form>
                     <hr>
                     <h2 class="text-center">search result</h2>
-                    <iframe src="" frameborder="0"></iframe>
+                        <div v-if="product" class="search result">
+                            <div class="card container">
+                                <div class=""> {{product.message}} </div>
+                            </div>
+                        </div>
                 </div>
             </div>
         </div>
