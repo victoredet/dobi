@@ -18,7 +18,10 @@
                     <h2 class="text-center">search result</h2>
                         <div v-if="product" class="search result">
                             <div class="card container">
-                                <div class=""> {{product.message}} </div>
+                                <div class=""> 
+                                     <h1>{{product.product_id}} </h1>
+                                    <p>{{product.message}} </p>
+                                </div>
                             </div>
                         </div>
                 </div>
@@ -42,7 +45,7 @@ export default{
     },
     methods:{
         async getProduct(){
-         await   axios.post('http://localhost:8000/api/get_product',{
+         await axios.get('http://localhost:8000/api/product/'+this.product_id,{
                 product_id:this.product_id
             }).then((res)=>{
                 this.product = res.data

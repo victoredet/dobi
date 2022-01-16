@@ -9,7 +9,11 @@ export default new Vuex.Store({
         updateUser(state, payload){
             state.user = payload.user
             state.token = payload.token
-        }
+        },
+        localUser(state, user){
+            state.user = user.user
+            state.token = user.token
+        },
     },
     actions:{
 

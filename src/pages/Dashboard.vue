@@ -12,45 +12,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                        <td class="text-danger">45-44-5542</td>
-                        <td>$1330</td>
-                        <td>$1330</td>
-                        </tr>
-                        <tr>
-                        <td class="text-danger">45-44-5542</td>
-                        <td>$1330</td>
-                        <td>$1330</td>
-                        </tr>
-                        <tr>
-                        <td class="text-danger">45-44-5542</td>
-                        <td>$1330</td>
-                        <td>$1330</td>
-                        </tr>
-                        <tr>
-                        <td class="text-danger">45-44-5542</td>
-                        <td>$1330</td>
-                        <td>$1330</td>
-                        </tr>
-                        <tr>
-                        <td class="text-danger">45-44-5542</td>
-                        <td>$1330</td>
-                        <td>$1330</td>
-                        </tr>
-                        <tr>
-                        <td class="text-danger">45-44-5542</td>
-                        <td>$1330</td>
-                        <td>$1330</td>
-                        </tr>
-                        <tr>
-                        <td class="text-danger">45-44-5542</td>
-                        <td>$1330</td>
-                        <td>$1330</td>
-                        </tr>
-                        <tr>
-                        <td class="text-danger">45-44-5542</td>
-                        <td>$1330</td>
-                        <td>$1330</td>
+                        <tr v-for="week in weekly" :key="week.id">
+                        <td class="text-danger"> {{week.date}} </td>
+                        <td>${{week.gross_sales}} </td>
+                        <td>${{week.gross_profit}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -59,7 +24,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <h1>Daily sales report</h1>
+                <h1>Daily sales report</h1> 
                 <table class="table table-striped">
                     <thead>
                         <tr class="bg-primary text-white">
@@ -70,112 +35,51 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                        <td class="">23-23-2009</td>
-                        <td>$1330</td>
-                        <td>#####</td>
-                        <td>0.0234234 btc</td>
+                        <tr v-for="dai in daily" :key="dai.id">
+                        <td  class=""> {{dai.date}} </td>
+                        <td>${{dai.gross_sales}}</td>
+                        <td>{{dai.trend}}</td>
+                        <td>{{dai.btcValue}} btc</td>
                         </tr>
-                         <tr>
-                        <td class="">23-23-2009</td>
-                        <td>$1330</td>
-                        <td>#####</td>
-                        <td>0.0234234 btc</td>
-                        </tr>
-                         <tr>
-                        <td class="">23-23-2009</td>
-                        <td>$1330</td>
-                        <td>#####</td>
-                        <td>0.0234234 btc</td>
-                        </tr>
-                         <tr>
-                        <td class="">23-23-2009</td>
-                        <td>$1330</td>
-                        <td>#####</td>
-                        <td>0.0234234 btc</td>
-                        </tr>
-                         <tr>
-                        <td class="">23-23-2009</td>
-                        <td>$1330</td>
-                        <td>#####</td>
-                        <td>0.0234234 btc</td>
-                        </tr>
-                         <tr>
-                        <td class="">23-23-2009</td>
-                        <td>$1330</td>
-                        <td>#####</td>
-                        <td>0.0234234 btc</td>
-                        </tr>
-                         <tr>
-                        <td class="">23-23-2009</td>
-                        <td>$1330</td>
-                        <td>#####</td>
-                        <td>0.0234234 btc</td>
-                        </tr>
-                         <tr>
-                        <td class="">23-23-2009</td>
-                        <td>$1330</td>
-                        <td>#####</td>
-                        <td>0.0234234 btc</td>
-                        </tr>
-                         <tr>
-                        <td class="">23-23-2009</td>
-                        <td>$1330</td>
-                        <td>#####</td>
-                        <td>0.0234234 btc</td>
-                        </tr>
-                         <tr>
-                        <td class="">23-23-2009</td>
-                        <td>$1330</td>
-                        <td>#####</td>
-                        <td>0.0234234 btc</td>
-                        </tr>
-                         <tr>
-                        <td class="">23-23-2009</td>
-                        <td>$1330</td>
-                        <td>#####</td>
-                        <td>0.0234234 btc</td>
-                        </tr>
-                         <tr>
-                        <td class="">23-23-2009</td>
-                        <td>$1330</td>
-                        <td>#####</td>
-                        <td>0.0234234 btc</td>
-                        </tr>
-                         <tr>
-                        <td class="">23-23-2009</td>
-                        <td>$1330</td>
-                        <td>#####</td>
-                        <td>0.0234234 btc</td>
-                        </tr>
-                         <tr>
-                        <td class="">23-23-2009</td>
-                        <td>$1330</td>
-                        <td>#####</td>
-                        <td>0.0234234 btc</td>
-                        </tr>
-                         <tr>
-                        <td class="">23-23-2009</td>
-                        <td>$1330</td>
-                        <td>#####</td>
-                        <td>0.0234234 btc</td>
-                        </tr>
-                         <tr>
-                        <td class="">23-23-2009</td>
-                        <td>$1330</td>
-                        <td>#####</td>
-                        <td>0.0234234 btc</td>
-                        </tr>
-                         <tr>
-                        <td class="">23-23-2009</td>
-                        <td>$1330</td>
-                        <td>#####</td>
-                        <td>0.0234234 btc</td>
-                        </tr>
-                        
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </template>
+
+<script>
+import axios from "axios";
+
+export default{
+    name:'Dashboard',
+    data(){
+        return{
+            weekly:{},
+            daily:{}
+        }
+    },
+    async mounted(){
+         await axios.get('http://localhost:8000/api/weekly/'+this.$store.state.user.id,{
+            headers:{
+                    Authorization: `Bearer ${this.$store.state.token}`
+                }
+        }).then((res)=>{
+            this.weekly = res.data
+        }).catch(()=>{
+            alert('something went wrong! Make sure you have internet')
+        })
+
+
+        await axios.get('http://localhost:8000/api/daily/'+this.$store.state.user.id,{
+            headers:{
+                    Authorization: `Bearer ${this.$store.state.token}`
+                }
+        }).then((res)=>{
+            this.daily = res.data
+        }).catch(()=>{
+            alert('something went wrong! Make sure you have internet')
+        })
+    }
+}
+</script>
