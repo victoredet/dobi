@@ -1,5 +1,6 @@
 <template>
     <div class="dashboard col-md-10 col-11 mx-auto">
+        <Nav/>
         <div class="d-flex">
             <div class="col-md-6 border-end border-4 border-white">
                 <h1>Weekly sales report</h1>
@@ -50,9 +51,14 @@
 
 <script>
 import axios from "axios";
+import Nav from '../components/Nav.vue'
+
 
 export default{
     name:'Dashboard',
+     components:{
+        Nav
+    },
     data(){
         return{
             weekly:{},
@@ -60,7 +66,7 @@ export default{
         }
     },
     async mounted(){
-         await axios.get('http://localhost:8000/api/weekly/'+this.$store.state.user.id,{
+         await axios.get('https://operator.dobiatm.com/backend/public/api/weekly/'+this.$store.state.user.id,{
             headers:{
                     Authorization: `Bearer ${this.$store.state.token}`
                 }
@@ -71,7 +77,7 @@ export default{
         })
 
 
-        await axios.get('http://localhost:8000/api/daily/'+this.$store.state.user.id,{
+        await axios.get('https://operator.dobiatm.com/backend/public/api/daily/'+this.$store.state.user.id,{
             headers:{
                     Authorization: `Bearer ${this.$store.state.token}`
                 }

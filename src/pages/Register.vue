@@ -1,6 +1,6 @@
 <template>
-    <div class="login py-5">
-        <div class="col-md-7 col-11 bg-secondary mx-auto py-3">
+    <div class="login">
+        <div class="col-md-7 col-11 bg-secondary mx-auto vh-100 py-3">
             <h2 class="text-center text-primary fw-bold py-2">Sign Up An Operator Account</h2>
             <form @submit.prevent="register()">
             <div class="form-group col-md-7 col-11 mx-auto">
@@ -19,7 +19,7 @@
                 <input type="password" required autofocus placeholder="Confirm Password" v-model="password_confirmation" class="form-control my-2">
             </div>
             <div class="col-md-7 col-11 mx-auto">
-                <button class="btn btn-primary fw-bold col-12" type="submit">Log In</button>
+                <button class="btn btn-primary fw-bold col-12" type="submit">Submit</button>
                 
                 <p><router-link to="/login" class="mt-2">Sign in</router-link></p>
             </div>
@@ -47,7 +47,7 @@ export default{
     },
     methods:{
         async register(){
-            await axios.post('http://localhost:8000/api/register',{
+            await axios.post('https://operator.dobiatm.com/backend/public/api/register',{
                 name:this.name,
                 phone:this.phone,
                 email:this.email,
@@ -62,7 +62,7 @@ export default{
                         
                 localStorage.setItem('@user', JSON.stringify(Response.data));
                 this.$router.push('/dashboard');
-            }).catch((Response) => {
+            }).catch(() => {
                     alert('Inputs not valid')
                     // console.log(Response.data); 
                 }); 

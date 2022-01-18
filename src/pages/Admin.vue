@@ -104,7 +104,7 @@ export default{
         }
     },
     async mounted(){
-        await axios.get('http://localhost:8000/api/users',{
+        await axios.get('https://operator.dobiatm.com/backend/public/api/users',{
             headers:{
                     Authorization: `Bearer ${this.$store.state.token}`
                 }
@@ -116,7 +116,7 @@ export default{
     },
     methods:{
         async addDaily(){
-            await axios.post('http://localhost:8000/api/add_daily',{
+            await axios.post('https://operator.dobiatm.com/backend/public/api/add_daily',{
                 user_id:this.user_id,
                 date:this.date,
                 gross_sales:this.gross_sales,
@@ -141,7 +141,7 @@ export default{
         },
 
         async addWeekly(){
-            await axios.post('http://localhost:8000/api/add_weekly',{
+            await axios.post('https://operator.dobiatm.com/backend/public/api/add_weekly',{
                 user_id:this.user_id,
                 date:this.date,
                 gross_sales:this.gross_sales,
@@ -166,7 +166,7 @@ export default{
 
 
         async addProduct(){
-            await axios.post('http://localhost:8000/api/add_product',{
+            await axios.post('https://operator.dobiatm.com/backend/public/api/add_product',{
                 product_id:this.product,
                 user_id:this.user_id,
                 message:this.message

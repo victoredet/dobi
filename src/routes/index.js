@@ -22,7 +22,7 @@ export const router = createRouter({
         component: Dashboard,
       },
       {
-        path: '/tracking',
+        path: '/',
         component: Tracking,
       },
       {

@@ -20,7 +20,7 @@
                             <div class="card container">
                                 <div class=""> 
                                      <h1>{{product.product_id}} </h1>
-                                    <p>{{product.message}} </p>
+                                    <p v-html="product.message"></p>
                                 </div>
                             </div>
                         </div>
@@ -45,7 +45,7 @@ export default{
     },
     methods:{
         async getProduct(){
-         await axios.get('http://localhost:8000/api/product/'+this.product_id,{
+         await axios.get('https://operator.dobiatm.com/backend/public/api/product/'+this.product_id,{
                 product_id:this.product_id
             }).then((res)=>{
                 this.product = res.data

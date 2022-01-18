@@ -1,7 +1,7 @@
 <template>
     <div class="login">
-        <div class="col-md-7 col-11 bg-secondary mx-auto py-3">
-            <h2 class="text-center text-primary fw-bold">Sign in</h2>
+        <div class="col-md-7 col-11 bg-secondary mx-auto py-3 vh-100">
+            <h2 class="text-center text-primary fw-bold">Sign into an operator account</h2>
             <form @submit.prevent="login">
             <div class="form-group col-md-7 col-11 mx-auto">
                 <input type="email" v-model="email" placeholder="Email" class="form-control my-2">
@@ -30,7 +30,7 @@ export default{
     },
     methods:{
          async login(){
-                await axios.post('http://localhost:8000/api/login',
+                await axios.post('https://operator.dobiatm.com/backend/public/api/login',
                  { 
                     email: this.email,
                     password:this.password })
