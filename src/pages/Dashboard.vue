@@ -1,8 +1,8 @@
 <template>
     <div class="dashboard col-md-10 col-11 mx-auto">
         <Nav/>
-        <div class="d-flex">
-            <div class="col-md-6 border-end border-4 border-white">
+        <div class=" page d-flex">
+            <div class="col-md-6 col-11 border-end border-4 border-white">
                 <h1>Weekly sales report</h1>
                 <table class="table table-striped">
                     <thead>
@@ -24,7 +24,7 @@
                    
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 col-11">
                 <h1>Daily sales report</h1> 
                 <table class="table table-striped">
                     <thead>
@@ -90,3 +90,8 @@ export default{
     }
 }
 </script>
+<style scoped>
+.page{
+    overflow: scroll;
+}
+</style>
