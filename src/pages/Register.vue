@@ -9,6 +9,9 @@
             <div class="form-group col-md-7 col-11 mx-auto">
                 <input type="text" required autofocus placeholder="Phone" v-model="phone" class="form-control my-2">
             </div>
+              <div class="form-group col-md-7 col-11 mx-auto">
+                <input type="text" required autofocus placeholder="address" v-model="address" class="form-control my-2">
+            </div>
             <div class="form-group col-md-7 col-11 mx-auto">
                 <input type="email" required autofocus placeholder="Email" v-model="email" class="form-control my-2">
             </div>
@@ -38,6 +41,7 @@ export default{
             name:'',
             phone:'',
             email:'',
+            address:'',
             password:'',
             password_confirmation:''
         }
@@ -51,6 +55,7 @@ export default{
                 name:this.name,
                 phone:this.phone,
                 email:this.email,
+                address:this.address,
                 password:this.password,
                 password_confirmation:this.password_confirmation
             }).then((Response)=>{
