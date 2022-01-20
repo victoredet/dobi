@@ -24,10 +24,10 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p><span class="fw-bold">Name:</span></p>
-        <p><span class="fw-bold">Email:</span></p>
-        <p><span class="fw-bold">Phone:</span></p>
-        <p><span class="fw-bold">Address:</span></p>
+        <p><span class="fw-bold">Name: {{this.$store.state.user.name}} </span></p>
+        <p><span class="fw-bold">Email: {{this.$store.state.user.email}}</span></p>
+        <p><span class="fw-bold">Phone: {{this.$store.state.user.phone}}</span></p>
+        <p><span class="fw-bold">Address: {{this.$store.state.user.address}}</span></p>
       </div>
       <div class="modal-footer">
         
