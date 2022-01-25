@@ -19,7 +19,13 @@
         </li>
         
       </ul>
+      <div v-if="this.$store.state.user.id" class="">
         <router-link class="btn btn-outline-success" to="/profile">Profile</router-link>
+      </div>
+      <div v-if="!this.$store.state.user.id" class="d-flex">
+        <router-link class="btn btn-outline-primary" to="/login">sign in</router-link>
+        <router-link class="btn btn-outline-primary" to="/register">sign up</router-link>
+      </div>
     </div>
   </div>
 </nav>

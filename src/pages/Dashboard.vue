@@ -66,6 +66,11 @@ export default{
             daily:{}
         }
     },
+    beforeCreate(){
+    if(!this.$store.state.user.id){
+      this.$router.push('/login')
+    }
+  },
     async mounted(){
          await axios.get('https://operator.dobiatm.com/backend/public/api/weekly/'+this.$store.state.user.id,{
             headers:{

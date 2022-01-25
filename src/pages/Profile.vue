@@ -9,19 +9,19 @@
             </div>
             <div class="col-md-8 col-11">
                 <h3 class="m-2">Operator Details</h3>
-                <div class="card m-3 col-7 container">
+                <div class="card m-3 col-11 col-md-7 container">
                     <h3>Name:</h3>
                     <p>{{this.$store.state.user.name}}</p>
                 </div>
-                <div class="card m-3 col-7 container">
+                <div class="card m-3 col-11 col-md-7 container">
                     <h3>Email:</h3>
                     <p>{{this.$store.state.user.email}}</p>
                 </div>
-                <div class="card m-3 col-7 container">
+                <div class="card m-3 col-11 col-md-7 container">
                     <h3>Address:</h3>
                     <p>{{this.$store.state.user.address}}</p>
                 </div>
-                <div class="card m-3 col-7 container">
+                <div class="card m-3 col-11 col-md-7 container">
                     <h3>Phone:</h3>
                     <p>{{this.$store.state.user.phone}}</p>
                 </div>
@@ -43,6 +43,11 @@ export default {
     name:'Profile',
     components:{
         Nav
+    },
+    beforeCreate(){
+    if(!this.$store.state.user.id){
+      this.$router.push('/login')
     }
+  }
 }
 </script>
