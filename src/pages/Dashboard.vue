@@ -1,8 +1,8 @@
 <template>
     <div class="dashboard col-md-10 col-11 mx-auto">
         <Nav/>
-        <div class=" page d-flex">
-            <div class="col-md-6 col-11 border-end border-4 border-white">
+        <div class=" page py-2 d-flex">
+            <div class="col-md-6 col-12 border-end border-4 border-white">
                 <h1>Weekly sales report</h1>
                 <table class="table table-striped">
                     <thead>
@@ -24,7 +24,7 @@
                    
                 </div>
             </div>
-            <div class="col-md-6 col-11">
+            <div class="col-md-6 col-12">
                 <h1>Daily sales report</h1> 
                 <table class="table table-striped">
                     <thead>

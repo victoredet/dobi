@@ -24,6 +24,15 @@
                                 </div>
                             </div>
                         </div>
+
+                         <div class="card m-3 container py-2 border-danger">
+                    <h5>VALID PURCHASES ARE ONLY MADE BY</h5>  
+                    *Filling Purchase Form on Website<br>
+                    *Sending email to support on contact@dobiatm.com<br>
+                    *Calling our procurement department on 855-201-2047.<br>
+
+                    DOBI will not be held liable for any purchase made through third-party agents.
+                </div>
                 </div>
             </div>
         </div>

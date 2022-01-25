@@ -1,53 +1,30 @@
 <template>
-    <div class="nav fw-bold">
-        <div class="col-12 py-1 d-flex justify-content-between border-bottom border-2">
-            <div class="col"> <img src="../assets/logo.jpg" alt=""> </div>
-            
-
-            <!-- desktop view -->
-            <div @click="nav=!nav" class="d-md-none">Menu</div>
-            <div class="d-none d-md-block">
-                <div v-if="!this.$store.state.user.id" class="col d-flex">
-                    <div class="m-2"> <router-link to="/">Tracking</router-link> </div>
-                    <div class="m-2"> <router-link to="/register">Sign Up</router-link> </div>
-                    <div class="m-2"> <router-link to="/login">Log in</router-link> </div>
-            </div>
-
-
-                 <div v-if="this.$store.state.user.id" class="col d-flex">
-                <div class="m-2"> <router-link to="/">Tracking</router-link> </div>
-                <div class="m-2"> <router-link to="/dashboard">Earnings</router-link> </div>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"> {{this.$store.state.user.name}} </button>
-            </div>
-            </div>
-           
-        </div>
-        <!-- mobile view  -->
-        <div v-if="nav" class="nav bg-primary col-12 text-center d-md-none">
-            <p> <router-link class="btn btn-default text-white" to="/">Tracking</router-link> </p>
-            <p> <router-link class="btn btn-default text-white" to="/dashboard">Earnings</router-link> </p>
-             <p type="button" class="btn btn-default text-white fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal"> {{this.$store.state.user.name}} </p>
-        </div>
-        <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Operator Details</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p><span class="fw-bold">Name: {{this.$store.state.user.name}} </span></p>
-        <p><span class="fw-bold">Email: {{this.$store.state.user.email}}</span></p>
-        <p><span class="fw-bold">Phone: {{this.$store.state.user.phone}}</span></p>
-        <p><span class="fw-bold">Address: {{this.$store.state.user.address}}</span></p>
-      </div>
-      <div class="modal-footer">
+    <div class="fw-bold">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <router-link class="navbar-brand" to="/"><img src="../assets/logo.jpg" alt=""></router-link>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <router-link class="nav-link active" aria-current="page" to="/">Home</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link class="nav-link" to="/">Tracking</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link class="nav-link" to="/dashboard">Earnings</router-link>
+        </li>
         
-      </div>
+      </ul>
+        <router-link class="btn btn-outline-success" to="/profile">Profile</router-link>
     </div>
   </div>
-            </div>
+</nav>
+
+
     </div>
 </template>
 <script >

@@ -10,7 +10,7 @@
                 <input type="text" required autofocus placeholder="Phone" v-model="phone" class="form-control my-2">
             </div>
               <div class="form-group col-md-7 col-11 mx-auto">
-                <input type="text" required autofocus placeholder="address" v-model="address" class="form-control my-2">
+                <input type="text" required autofocus placeholder="Address" v-model="address" class="form-control my-2">
             </div>
             <div class="form-group col-md-7 col-11 mx-auto">
                 <input type="email" required autofocus placeholder="Email" v-model="email" class="form-control my-2">
