@@ -1,102 +1,107 @@
 <template>
-    <div class="dashboard col-md-10 col-11 mx-auto">
-        <Nav/>
-        <div class=" page py-2 d-flex">
-            <div class="col-md-6 col-12 border-end border-4 border-white">
-                <h1>Weekly sales report</h1>
-                <table class="table table-striped">
-                    <thead>
-                        <tr class="bg-primary text-white">
-                        <th scope="col">Week Ending</th>
-                        <th scope="col">Gross sales</th>
-                        <th scope="col">Gross Profit</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="week in weekly" :key="week.id">
-                        <td class="text-danger"> {{week.date}} </td>
-                        <td>${{week.gross_sales}} </td>
-                        <td>${{week.gross_profit}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="user-image">
-                   
+    <div class="dashboard d-flex">
+        <div class="d-none d-md-block col-2">
+            <Nav/>
+        </div>
+        <div class="col-md-10 container pb-5 content vh-100">
+             <div class="col-12 bg-primary  card shadow-sm m-2">
+                <iframe src="https://bit2me.com/widget/crypto-carousel/v1" style="display:block;width:100%;height:40px;" frameborder="0"></iframe>
+            </div>
+             <div class="col-12 bg-primary animate__animated animate__bounce  card shadow-sm m-2">
+                <h4 class="text-white p-2">Deligence with AI powerred trade</h4>
+            </div>
+            <div class="row col-12 py-2">
+                <div class="col-md-3 m-2">
+                    <div class="py-2 container bg-white border-5 border-bottom border-primary rounded shadow">
+                        <p class="fw-bold">Account Balance</p>
+                        <!-- <h3>${{this.$state.store.user.account}}</h3> -->
+                    </div>
+                </div>
+                 <div class="col-md-3 m-2">
+                    <div class="py-2 container bg-white border-5 border-bottom border-primary rounded shadow">
+                        <p class="fw-bold">Profit Balance</p>
+                        <!-- <h3>${{this.$state.store.user.profit}}</h3> -->
+                    </div>
+                </div>
+                 <div class="col-md-3 m-2">
+                    <div class="py-2 container bg-white border-5 border-bottom border-primary rounded shadow">
+                        <p class="fw-bold">Active Signals</p>
+                        <h3></h3>
+                    </div>
+                </div>
+                  
+               
+
+            </div>
+            <div class="chart container bg-white col-12 pb-5">
+                <div class="col-12">
+                    <iframe src="https://bit2me.com/widget/chart/v1?currency=B2M&fiat=USDT" style="display:block;width:100%;height:400px;margin:0 auto;" frameborder="0"></iframe>
+                </div>
+                <div class=" py-1 bg-primary container">
+                    <p class="m-1 fw-bold fs-5 col-12 text-white text-center">Trade Statistics</p> 
+                </div>
+                <div class="col-12">
+                    <div v-for="coin in coins" :key="coin.id" class="d-flex border-1 border">
+                        <div class="text-center col-2 m-1"><img :src="coin.image" class="w-25" /> </div>
+                        <div class="col-4 m-1 fw-bold">{{coin.name}}</div>
+                        <div class="col-3 m-1">${{coin.current_price}}</div>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-6 col-12">
-                <h1>Daily sales report</h1> 
-                <table class="table table-striped">
-                    <thead>
-                        <tr class="bg-primary text-white">
-                        <th scope="col">Date</th>
-                        <th scope="col">Gross sales</th>
-                        <th scope="col">Trend</th>
-                        <th scope="col">BTC value</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="dai in daily" :key="dai.id">
-                        <td  class=""> {{dai.date}} </td>
-                        <td>${{dai.gross_sales}}</td>
-                        <td>{{dai.trend}}</td>
-                        <td>{{dai.btcValue}} btc</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
         </div>
-        <!-- Button trigger modal -->
+        <Bottom/>
     </div>
 </template>
 
 <script>
-import axios from "axios";
 import Nav from '../components/Nav.vue'
+import axios from 'axios'
+import Bottom from '../components/Bottom.vue'
 
 
 export default{
     name:'Dashboard',
-     components:{
-        Nav
-    },
     data(){
         return{
-            weekly:{},
-            daily:{}
+            coins:{}
         }
     },
-    beforeCreate(){
-    if(!this.$store.state.user.id){
-      this.$router.push('/login')
-    }
-  },
+     components:{
+    Nav,
+    Bottom
+},
     async mounted(){
-         await axios.get('https://operator.dobiatm.com/backend/public/api/weekly/'+this.$store.state.user.id,{
-            headers:{
-                    Authorization: `Bearer ${this.$store.state.token}`
-                }
-        }).then((res)=>{
-            this.weekly = res.data
-        }).catch(()=>{
-            alert('something went wrong! Make sure you have internet')
-        })
 
-
-        await axios.get('https://operator.dobiatm.com/backend/public/api/daily/'+this.$store.state.user.id,{
-            headers:{
-                    Authorization: `Bearer ${this.$store.state.token}`
-                }
-        }).then((res)=>{
-            this.daily = res.data
-        }).catch(()=>{
-            alert('something went wrong! Make sure you have internet')
+         await axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=30&page=1&sparkline=false').then(res=>{
+            this.coins = res.data
         })
+        // if(!this.$store.state.user.name){
+        //     this.$router.push('/login')
+        // }
+        //  await axios.get('https://www.app.a1tradefx.com/backend/public/api/user/'+this.$store.state.user.id,{
+        //        headers:{
+        //         Authorization: `Bearer ${this.$store.state.token}`
+        //         }
+        //   }).then((res)=>{
+        //       let user = res.data
+        //       this.$store.commit('updateUserDetails', user)
+        //   })
     }
+   
 }
 </script>
 <style scoped>
-.page{
+ .content{
     overflow: scroll;
 }
+
+ 
+.content::-webkit-scrollbar {
+  display: none;
+}
+
+.content {
+  -ms-overflow-style: none;  
+  scrollbar-width: none;  
+} 
 </style>

@@ -1,53 +1,85 @@
 <template>
-    <div class="col-md-8 col-11 mx-auto">
-        <Nav/>
-        <div class="d-flex">
-            <div class="col-md-4 vh-100 bg-primary">
-                <div class="py-4 fw-bold text-white text-center">
-                    
+    <div class="dashboard d-flex">
+        <div class="col-2">
+            <Nav/>
+        </div>
+        <div class="col-10 content p-4">
+            <div class="col-md-9 col-11 mx-auto ">
+                <div class="col-12 p-3 d-flex card shadow-sm m-2">
+                    <div class="col-10">
+                        <h4>Brad's Profile</h4>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-8 col-11">
-                <h3 class="m-2">Operator Details</h3>
-                <div class="card m-3 col-11 col-md-7 container">
-                    <h3>Name:</h3>
-                    <p>{{this.$store.state.user.name}}</p>
+                <div class="col-12 p-3 d-flex card shadow-sm m-2">
+                    <div class="form">
+                        <form @submit.prevent="">
+                            <div class="row col-12 mx-auto">
+                                <div class="col-md-6 form-group">
+                                    <label>Name</label>
+                                    <input class="form-control" v-model="name">
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label>Email</label>
+                                    <input class="form-control" v-model="email">
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label>Phone</label>
+                                    <input class="form-control" v-model="phone">
+                                </div>
+                            </div>
+                            <button class="btn btn-primary text-white col-12 m-2">Update</button>
+                        </form>
+                    </div>
                 </div>
-                <div class="card m-3 col-11 col-md-7 container">
-                    <h3>Email:</h3>
-                    <p>{{this.$store.state.user.email}}</p>
+                 <div class="col-12 p-3 d-flex card shadow-sm m-2">
+                    <div class="form">
+                        <h1 class="text-center">Reset Password</h1>
+                        <form @submit.prevent="updatepassword">
+                            <div class="row col-12 mx-auto">
+                                <div class="col-md-6 form-group">
+                                    <label>New Password</label>
+                                    <input class="form-control" type="password" v-model="name">
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label>Confirm Password</label>
+                                    <input class="form-control" type="password" v-model="email">
+                                </div>
+                            </div>
+                            <button class="btn btn-primary text-white col-12 m-2">Update</button>
+                        </form>
+                    </div>
                 </div>
-                <div class="card m-3 col-11 col-md-7 container">
-                    <h3>Address:</h3>
-                    <p>{{this.$store.state.user.address}}</p>
-                </div>
-                <div class="card m-3 col-11 col-md-7 container">
-                    <h3>Phone:</h3>
-                    <p>{{this.$store.state.user.phone}}</p>
-                </div>
-                <div class="card m-3 container py-2 border-danger">
-                    <h4>VALID PURCHASES ARE ONLY MADE BY</h4>  
-                    *Filling Purchase Form on Website<br>
-                    *Sending email to support on contact@dobiatm.com<br>
-                    *Calling our procurement department on 855-201-2047.<br>
-
-                    DOBI will not be held liable for any purchase made through third-party agents.
-                </div>
-            </div>
+            </div> 
         </div>
     </div>
 </template>
+
 <script>
 import Nav from '../components/Nav.vue'
-export default {
+
+
+
+export default{
     name:'Profile',
-    components:{
+    data(){
+        return{
+            name:this.$store.state.user.name,
+            email:this.$store.state.user.email,
+            phone:this.$store.state.user.phone,
+        }
+    },
+     components:{
         Nav
     },
-    beforeCreate(){
-    if(!this.$store.state.user.id){
-      this.$router.push('/login')
-    }
-  }
+    methods:{
+        async updatepassword(){
+            await axios.post
+        }
+    }   
 }
 </script>
+<style scoped>
+.page{
+    overflow: scroll;
+}
+</style>

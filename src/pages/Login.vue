@@ -1,20 +1,30 @@
 <template>
-    <div class="login">
-        <div class="col-md-7 col-11 bg-secondary mx-auto py-3 vh-100">
-            <h2 class="text-center text-primary fw-bold">Sign into an operator account</h2>
-            <form @submit.prevent="login">
-            <div class="form-group col-md-7 col-11 mx-auto">
-                <input type="email" v-model="email" placeholder="Email" class="form-control my-2">
-            </div>
-            <div class="form-group col-md-7 col-11 mx-auto">
-                <input type="password" v-model="password" placeholder="Password" class="form-control my-2">
-            </div>
-            <div class="col-md-7 col-11 mx-auto">
-                <button class="btn btn-primary fw-bold col-12">Log In</button>
-            <p><router-link to="/register" class="mt-2">Sign Up</router-link></p>
-            </div>
-            </form>
-        </div>
+    <div class="login d-flex">
+       <div class="d-none d-md-block col-9  shadow-sm photo vh-100">
+           <img class="w-75" src="../assets/images/pages/login-v2.svg">
+       </div>
+       <div class="form col bg-white vh-100">
+           <div class="p-5">
+               <div class="text-center">
+                <img src="../assets/images/illustration/badge.svg">
+               </div>
+               <p class=" fs-4">Welcome Champion!</p>
+               <p> Sign-in to your account </p>
+               <form @submit.prevent="login">
+                   <div class="form-group">
+                       <label>Email</label>
+                       <input class="form-control" type="email" required v-model="email">
+                   </div>
+                   <div class="form-group">
+                       <label>Password</label>
+                       <input class="form-control" type="password" v-model="password">
+                   </div>
+                   <router-link to="/forgot_password">Forgot password?</router-link>
+                   <button class="btn btn-primary col-12 mt-2 text-white">Sign-in</button>
+                   <p class="mt-1">New on our platform? <router-link to="/register">Create an account</router-link> </p> 
+               </form>
+           </div>
+       </div>
     </div>
 </template>
 <script>
@@ -30,7 +40,7 @@ export default{
     },
     methods:{
          async login(){
-                await axios.post('https://operator.dobiatm.com/backend/public/api/login',
+                await axios.post('https://www.app.a1tradefx.com/backend/public/api/login',
                  { 
                     email: this.email,
                     password:this.password })
@@ -55,3 +65,20 @@ export default{
     }
 }
 </script>
+
+<style scoped>
+.content{
+    overflow: scroll;
+}
+
+ /* Hide scrollbar for Chrome, Safari and Opera */
+.content::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.content {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+} 
+</style>

@@ -1,77 +1,137 @@
 <template>
-    <div class="login">
-        <div class="col-md-7 col-11 bg-secondary mx-auto vh-100 py-3">
-            <h2 class="text-center text-primary fw-bold py-2">Sign Up An Operator Account</h2>
-            <form @submit.prevent="register()">
-            <div class="form-group col-md-7 col-11 mx-auto">
-                <input type="text" required autofocus placeholder="Name" v-model="name" class="form-control my-2">
-            </div>
-            <div class="form-group col-md-7 col-11 mx-auto">
-                <input type="text" required autofocus placeholder="Phone" v-model="phone" class="form-control my-2">
-            </div>
-              <div class="form-group col-md-7 col-11 mx-auto">
-                <input type="text" required autofocus placeholder="Address" v-model="address" class="form-control my-2">
-            </div>
-            <div class="form-group col-md-7 col-11 mx-auto">
-                <input type="email" required autofocus placeholder="Email" v-model="email" class="form-control my-2">
-            </div>
-            <div class="form-group col-md-7 col-11 mx-auto">
-                <input type="password" required autofocus placeholder="Password" v-model="password" class="form-control my-2">
-            </div>
-            <div class="form-group col-md-7 col-11 mx-auto">
-                <input type="password" required autofocus placeholder="Confirm Password" v-model="password_confirmation" class="form-control my-2">
-            </div>
-            <div class="col-md-7 col-11 mx-auto">
-                <button class="btn btn-primary fw-bold col-12" type="submit">Submit</button>
-                
-                <p><router-link to="/login" class="mt-2">Sign in</router-link></p>
-            </div>
-            </form>
-        </div>
+    <div class="login d-flex">
+       <div class="d-none d-md-block col-9  shadow-sm photo vh-100">
+           <img class="w-75" src="../assets/images/pages/register-v2.svg">
+       </div>
+       <div class="form col content bg-white vh-100">
+            <div class="text-center">
+                <img src="../assets/images/illustration/badge.svg">
+               </div>
+           <div class="p-5">
+               <p class=" fs-4"> Financial freedom starts here!</p>
+               <p> Sign-up </p>
+               <form @submit.prevent="register">
+                   <div class="form-group">
+                       <label>Name</label>
+                       <input class="form-control" v-model="name" required>
+                   </div>
+                   <div class="form-group">
+                       <label>Email</label>
+                       <input class="form-control" type="email" v-model="email" required>
+                   </div>
+                   <div class="form-group">
+                       <label>Phone</label>
+                       <input class="form-control" v-model="phone"  >
+                   </div>
+                   <div class="form-group">
+                       <label>Country</label>
+                       <select v-model="country" class="form-control">
+                           <option v-for="country in countries" :key="country.id" :value="country.name">{{country.name}}</option>
+                       </select>
+                   </div>
+                   <div class="form-group">
+                       <label>Password</label>
+                        <input type="password" v-model="password" required class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters">
+                   </div>
+                   <p class="text-danger" v-if="password.length<8 && password!=''">must contain 8 characters</p>
+                   <div class="form-group">
+                       <label>Confirm Password</label>
+                       <input class="form-control" type="password" v-model="confirm_password" required>
+                   </div>
+                   <p v-if="password==confirm_password && password!=''" class="text-success small">Password fields match. You can proceed</p>
+                   <p v-if="password!=confirm_password" class="text-danger small">password field does not match confirm password</p>
+                    <div class="form-group">
+                       <label>I was referred by:</label>
+                       <input class="form-control" v-model="refer"   >
+                   </div>
+                   <button class="btn btn-primary col-12 mt-2 text-white">Sign-in</button>
+                   <p class="mt-1">Already have an account? <router-link to="/login"> Sign in instead</router-link> </p> 
+                   
+               </form>
+           </div>
+       </div>
     </div>
 </template>
-
 <script>
-import axios from 'axios'
+import axios from "axios";
+import validator from 'validator';
 
 export default{
     name:'Register',
     data(){
         return{
             name:'',
-            phone:'',
             email:'',
-            address:'',
+            phone:'',
             password:'',
-            password_confirmation:''
+            vall:false,
+            confirm_password:'',
+            ref:'',
+            country:'',
+            countries:{}
         }
     },
-    mounted(){
-        // console.log('data', process.env)
+    async mounted(){
+        await axios.get('https://restcountries.com/v2/all').then((res)=>{
+            this.countries=res.data
+        })
     },
     methods:{
-        async register(){
-            await axios.post('https://operator.dobiatm.com/backend/public/api/register',{
-                name:this.name,
-                phone:this.phone,
-                email:this.email,
-                address:this.address,
-                password:this.password,
-                password_confirmation:this.password_confirmation
-            }).then((Response)=>{
-                console.log('user',Response.data.user)
-                console.log('token',Response.data.token)
-                const payload = Response.data
+        Password(){
+            
+            if(validator.isStrongPassword(this.password)==false){
+                this.vall=true
+            }
+        },
+         async register(){
+             if(!validator.isStrongPassword(this.password)){
+                 alert('Password must contain at least 8 aphanumeric and special character values')
+             }
+                await axios.post('https://www.app.a1tradefx.com/backend/public/api/register',
+                 { 
+                    name: this.name,
+                    email: this.email,
+                    phone: this.phone,
+                    country: this.country,
+                    refer: this.refer,
+                    password:this.password,
+                    password_confirmation:this.password
+                     })
+                    .then((Response) =>{
+                        // const { data,token } = Response.data;
+                         console.log('user',Response.data.user)
+                         console.log('token',Response.data.token)
+                        const payload = Response.data
 
-                this.$store.commit('updateUser',payload)
+                        this.$store.commit('updateUser',payload)
                         
-                localStorage.setItem('@user', JSON.stringify(Response.data));
-                this.$router.push('/dashboard');
-            }).catch(() => {
-                    alert('Inputs not valid')
-                    // console.log(Response.data); 
-                }); 
-        }
+                        localStorage.setItem('@user', JSON.stringify(Response.data));
+                        this.$router.push('/dashboard');
+                        
+                })
+                .catch(function () {
+                    alert('oops, something went wrong. please check your connection and credentials')
+                    // this.error_msg = Response.message
+                    // console.log(Response.data.msg); 
+                });               
+            }
     }
 }
 </script>
+
+<style scoped>
+.content{
+    overflow: scroll;
+}
+
+ /* Hide scrollbar for Chrome, Safari and Opera */
+.content::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.content {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+} 
+</style>

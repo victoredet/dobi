@@ -1,48 +1,61 @@
 <template>
-    <div class="fw-bold">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <router-link class="navbar-brand" to="/"><img src="../assets/logo.jpg" alt=""></router-link>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <router-link class="nav-link active" aria-current="page" to="/">Home</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link class="nav-link" to="/">Tracking</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link class="nav-link" to="/dashboard">Earnings</router-link>
-        </li>
-        
-      </ul>
-      <div v-if="this.$store.state.user.id" class="">
-        <router-link class="btn btn-outline-success" to="/profile">Profile</router-link>
-      </div>
-      <div v-if="!this.$store.state.user.id" class="d-flex">
-        <router-link class="btn btn-outline-primary" to="/login">sign in</router-link>
-        <router-link class="btn btn-outline-primary" to="/register">sign up</router-link>
-      </div>
-    </div>
-  </div>
-</nav>
+   <div class="side-bar bg-white shadow col-12 vh-100">
+     <div class="logo bg-primary">
+       <h3 class="py-2 text-white text-center py-1">A1tradefx</h3>
+     </div>
+     <div class="routes col-10 mx-auto">
+       <div @click="this.$router.push('/dashboard')" class="rounded r-item-box container ">
+         <p class="r-item py-2">Dashboard</p>
+       </div>
+       <div @click="this.$router.push('/history')" class="rounded r-item-box container ">
+         <p class="r-item py-2">Transaction History</p>
+       </div>
+       <div @click="this.$router.push('/deposit')" class="rounded r-item-box container ">
+         <p class="r-item py-2">Deposit</p>
+       </div>
+       <div @click="this.$router.push('/withdraw')" class="rounded r-item-box container ">
+         <p class="r-item py-2">Withdraw</p>
+       </div>
+       <div @click="this.$router.push('/contracts')" class="rounded r-item-box container ">
+         <p class="r-item py-2">Contracts</p>
+       </div>
+       <div @click="this.$router.push('/profile')" class="rounded r-item-box container ">
+         <p class="r-item py-2">Profile</p>
+       </div>
+       <div @click="logout" class="rounded r-item-box container ">
+         <p class="r-item py-2">Log out</p>
+       </div>
+     </div>
 
-
-    </div>
+   </div>
 </template>
 <script >
 export default{
     name:'Nav',
     data(){
         return{
-            nav:false
+            
         }
+    },
+    async mounted(){
+      if(this.$store.state.user.email=='admin@gmail.com'){
+        this.$router.push('/admin')
+      }
+    },
+    methods:{
+      logout(){
+        this.$store.commit('logoutUser')
+        localStorage.setItem('@user', JSON.stringify(''));
+        this.$router.push('/login');
+      }
     }
 }
 </script>
 <style scoped>
-
+.r-item-box:hover{
+  background: #124f8f;
+  color:white;
+  padding-left: 2rem;
+  cursor: pointer;
+}
 </style>
