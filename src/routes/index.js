@@ -5,6 +5,7 @@ import Reset from '../pages/Reset.vue'
 import Register from '../pages/Register.vue'
 import Dashboard from '../pages/Dashboard.vue'
 import Contract from '../pages/Contract.vue'
+import Signals from '../pages/Signals.vue'
 import Deposit from '../pages/Deposit.vue'
 import Withdraw from '../pages/Withdraw.vue'
 import Profile from '../pages/Profile.vue'
@@ -46,6 +47,10 @@ export const router = createRouter({
       {
         path: '/contracts',
         component: Contract,
+      },
+      {
+        path: '/robot-trade',
+        component: Signals,
       },
       {
         path: '/deposit',
