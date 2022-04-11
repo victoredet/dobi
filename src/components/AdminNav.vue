@@ -16,6 +16,9 @@
        <div @click="this.$router.push('/admin_contracts')" class="rounded r-item-box container ">
          <p class="r-item py-2">Contracts</p>
        </div>
+       <div @click="this.$router.push('/admin_signals')" class="rounded r-item-box container ">
+         <p class="r-item py-2">Signals</p>
+       </div>
        <div @click="this.$router.push('/admin_deposit')" class="rounded r-item-box container ">
          <p class="r-item py-2">Deposit</p>
        </div>

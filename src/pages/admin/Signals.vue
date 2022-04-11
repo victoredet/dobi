@@ -7,26 +7,25 @@
             <div class="col-md-9 col-11 mx-auto ">
                 <div class="col-12 p-3 d-flex card shadow-sm m-2">
                     <div class="col-10">
-                        <h4>All Contracts</h4>
+                        <h4>All Signals</h4>
                     </div>
-                   <div v-for="plan in plans" :key="plan.id" class="user m-1 container col-12 border border-2 py-2">
+                   <div v-for="signal in plans" :key="signal.id" class="user m-1 container col-12 border border-2 py-2">
                      <div v-for="user in users" :key="user.id" class="">
-                         <p v-if="user.id==plan.user_id">Name: {{user.name}}</p>
-                         <p v-if="user.id==plan.user_id">Email: {{user.email}}</p>
+                         <p v-if="user.id==signal.user_id">Name: {{user.name}}</p>
+                         <p v-if="user.id==signal.user_id">Email: {{user.email}}</p>
                      </div>
-                     <p>Plan: {{plan.plan}} </p>
-                     <p>Amount: ${{plan.amount}} </p>
-                     <p>Daily profit: ${{plan.daily}} </p>
-                    <form @submit.prevent="updatePlan">
-                     <p>profit: ${{plan.profit}}</p>
+                      
+                     <p>Amount: ${{plan.price}} </p>
+                    <form @submit.prevent="updateSignal">
+                     <p>profit: ${{signal.profit}}</p>
 
-                       <input @change="plan_id=plan.id" class="form-control" v-model="profit" > 
-                     <p>count: {{plan.count}} </p>
-                       <input @change="plan_id=plan.id" class="form-control" v-model="count" > 
+                       <input @change="signal_id=Signal.id" class="form-control" v-model="profit" > 
+                     <p>count: {{signal.count}} </p>
+                       <input @change="signal_id=signal.id" class="form-control" v-model="count" > 
                         <button type="submit" class="btn btn-primary">Update</button>
 
                     </form>
-                     <p>date: {{plan.created_at}} </p>
+                     <p>date: {{signal.created_at}} </p>
                    </div>
                 </div>
             </div> 
@@ -40,21 +39,21 @@ import moment from 'moment'
 import AdminNav from '../../components/AdminNav.vue'
 
 export default{
-    name:'AdminContracts',
+    name:'AdminSignals',
      components:{
         AdminNav
     },
     data(){
       return{
-        plans:{},
+        signals:{},
         users:{},
         profit:'',
         count:'',
-        plan_id:''
+        signal_id:''
       }
     },
     async mounted(){
-      await axios.get('https://www.app.a1tradefx.com/backend/public/api/get_plans',{
+      await axios.get('https://www.app.a1tradefx.com/backend/public/api/get_signals',{
         headers:{
           Authorization: `Bearer ${this.$store.state.token}`
         }
@@ -74,9 +73,9 @@ export default{
       })
     },
      methods:{
-        async updatePlan(){
-          await axios.post('https://www.app.a1tradefx.com/backend/public/api/update_plan',{
-            plan_id:this.plan_id,
+        async updatePlanSignal(){
+          await axios.post('https://www.app.a1tradefx.com/backend/public/api/update_signal',{
+            signal_id:this.signal_id,
             count:this.count,
             profit:this.profit,
           },{
@@ -84,9 +83,9 @@ export default{
           Authorization: `Bearer ${this.$store.state.token}`
         }
       }).then((res)=>{
-        this.plans=res.data
-        res.data.forEach(plan => {
-            plan.created_at=moment(plan.created_at).calendar();
+        this.signals=res.data
+        res.data.forEach(signal => {
+            signal.created_at=moment(plan.created_at).calendar();
         });
       })
         },

@@ -15,6 +15,7 @@ import Users from '../pages/admin/Users.vue'
 import AdminDeposits from '../pages/admin/AdminDeposits.vue'
 import AdminWithdrawal from '../pages/admin/AdminWithdrawal.vue'
 import AdminContracts from '../pages/admin/AdminContracts.vue'
+import AdminSignals from '../pages/admin/Signals.vue'
 
 
 export const router = createRouter({
@@ -83,6 +84,10 @@ export const router = createRouter({
       {
         path: '/admin_contracts',
         component: AdminContracts,
+      },
+      {
+        path: '/admin_signals',
+        component: AdminSignals,
       },
       {
         path: '/admin_deposit',

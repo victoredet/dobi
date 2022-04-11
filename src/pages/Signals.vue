@@ -9,7 +9,6 @@
                     <div class="text-center ">
                         <h4 class="text-white ">Use the AI power to your advantage!</h4>
                     </div>
-                   
                 </div>
 
                 <div class="col-12 p-3 d-flex card shadow-sm m-2">
@@ -33,9 +32,6 @@
                         </div>
                     </div>
                 </div>
-
-
-
                 <div class="col-12 p-3 d-flex card shadow-sm m-2">
                     <div class="col-10">
                         <h4>My Active AI robot trades</h4>
@@ -87,7 +83,7 @@ export default{
               alert('Amount must be higher than $999.')
               return
           }
-          await axios.post('https://www.app.a1tradefx.com/backend/public/api/buy_plan/'+this.$store.state.user.id,{
+          await axios.post('https://www.app.a1tradefx.com/backend/public/api/buy_signal/'+this.$store.state.user.id,{
               amount:this.amount,
           },{
                headers:{
@@ -102,7 +98,7 @@ export default{
        
     },
     async mounted(){
-      await axios.get('https://www.app.a1tradefx.com/backend/public/api/my_plans/'+this.$store.state.user.id,{
+      await axios.get('https://www.app.a1tradefx.com/backend/public/api/my_signals/'+this.$store.state.user.id,{
         headers:{
           Authorization: `Bearer ${this.$store.state.token}`
         }
