@@ -9,7 +9,7 @@
                     <div class="col-10">
                         <h4>All Signals</h4>
                     </div>
-                   <div v-for="signal in plans" :key="signal.id" class="user m-1 container col-12 border border-2 py-2">
+                   <div v-for="signal in signals" :key="signal.id" class="user m-1 container col-12 border border-2 py-2">
                      <div v-for="user in users" :key="user.id" class="">
                          <p v-if="user.id==signal.user_id">Name: {{user.name}}</p>
                          <p v-if="user.id==signal.user_id">Email: {{user.email}}</p>
@@ -58,9 +58,9 @@ export default{
           Authorization: `Bearer ${this.$store.state.token}`
         }
       }).then((res)=>{
-        this.plans=res.data
-        res.data.forEach(plan => {
-            plan.created_at=moment(plan.created_at).format('LLL');
+        this.signals=res.data
+        res.data.forEach(signal => {
+            signal.created_at=moment(signal.created_at).format('LLL');
         });
       })
 
@@ -73,7 +73,7 @@ export default{
       })
     },
      methods:{
-        async updatePlanSignal(){
+        async updateSignal(){
           await axios.post('https://www.app.a1tradefx.com/backend/public/api/update_signal',{
             signal_id:this.signal_id,
             count:this.count,
@@ -89,18 +89,6 @@ export default{
         });
       })
         },
-        async daily(){
-             await axios.get('https://www.app.a1tradefx.com/backend/public/api/daily',{
-        headers:{
-          Authorization: `Bearer ${this.$store.state.token}`
-        }
-      }).then((res)=>{
-        this.plans=res.data
-        res.data.forEach(plan => {
-            plan.created_at=moment(plan.created_at).calendar();
-        });
-      })
-         },
        async fund(){
          await axios.post('https://www.app.a1tradefx.com/backend/public/api/fund/'+this.user,{
            user:this.user,

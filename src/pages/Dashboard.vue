@@ -14,19 +14,25 @@
                 <div class="col-md-3 m-2">
                     <div class="py-2 container bg-white border-5 border-bottom border-primary rounded shadow">
                         <p class="fw-bold">Account Balance</p>
-                        <!-- <h3>${{this.$state.store.user.account}}</h3> -->
+                        <h3>${{this.$store.state.user.account}}</h3>
                     </div>
                 </div>
                  <div class="col-md-3 m-2">
                     <div class="py-2 container bg-white border-5 border-bottom border-primary rounded shadow">
                         <p class="fw-bold">Profit Balance</p>
-                        <!-- <h3>${{this.$state.store.user.profit}}</h3> -->
+                        <h3>${{this.$store.state.user.profit}}</h3>
                     </div>
                 </div>
                  <div class="col-md-3 m-2">
                     <div class="py-2 container bg-white border-5 border-bottom border-primary rounded shadow">
                         <p class="fw-bold">Active Signals</p>
-                        <h3></h3>
+                        <h3> {{signals.length}} </h3>
+                    </div>
+                </div>
+                <div class="col-md-3 m-2">
+                    <div class="py-2 container bg-white border-5 border-bottom border-primary rounded shadow">
+                        <p class="fw-bold">Active Contracts</p>
+                        <h3> {{plans.length}} </h3>
                     </div>
                 </div>
                   
@@ -63,7 +69,9 @@ export default{
     name:'Dashboard',
     data(){
         return{
-            coins:{}
+            coins:{},
+            signals:{},
+            plans:{}
         }
     },
      components:{
@@ -75,17 +83,34 @@ export default{
          await axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=30&page=1&sparkline=false').then(res=>{
             this.coins = res.data
         })
-        // if(!this.$store.state.user.name){
-        //     this.$router.push('/login')
-        // }
-        //  await axios.get('https://www.app.a1tradefx.com/backend/public/api/user/'+this.$store.state.user.id,{
-        //        headers:{
-        //         Authorization: `Bearer ${this.$store.state.token}`
-        //         }
-        //   }).then((res)=>{
-        //       let user = res.data
-        //       this.$store.commit('updateUserDetails', user)
-        //   })
+
+        await axios.get('https://www.app.a1tradefx.com/backend/public/api/my_signals/'+this.$store.state.user.id,{
+        headers:{
+          Authorization: `Bearer ${this.$store.state.token}`
+        }
+      }).then((res)=>{
+        this.signals=res.data
+      })
+
+       await axios.get('https://www.app.a1tradefx.com/backend/public/api/my_plans/'+this.$store.state.user.id,{
+        headers:{
+          Authorization: `Bearer ${this.$store.state.token}`
+        }
+      }).then((res)=>{
+        this.plans=res.data
+      })
+  
+        if(!this.$store.state.user.name){
+            this.$router.push('/login')
+        }
+         await axios.get('https://www.app.a1tradefx.com/backend/public/api/user/'+this.$store.state.user.id,{
+               headers:{
+                Authorization: `Bearer ${this.$store.state.token}`
+                }
+          }).then((res)=>{
+              let user = res.data
+              this.$store.commit('updateUserDetails', user)
+          })
     }
    
 }

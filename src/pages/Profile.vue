@@ -38,14 +38,14 @@
                             <div class="row col-12 mx-auto">
                                 <div class="col-md-6 form-group">
                                     <label>New Password</label>
-                                    <input class="form-control" type="password" v-model="name">
+                                    <input class="form-control" type="password" v-model="password">
                                 </div>
                                 <div class="col-md-6 form-group">
                                     <label>Confirm Password</label>
-                                    <input class="form-control" type="password" v-model="email">
+                                    <input class="form-control" type="password" v-model="password_confirmation">
                                 </div>
                             </div>
-                            <button class="btn btn-primary text-white col-12 m-2">Update</button>
+                            <button type="submit" class="btn btn-primary text-white col-12 m-2">Update</button>
                         </form>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
 
 <script>
 import Nav from '../components/Nav.vue'
-
+import axios from 'axios'
 
 
 export default{
@@ -66,6 +66,8 @@ export default{
             name:this.$store.state.user.name,
             email:this.$store.state.user.email,
             phone:this.$store.state.user.phone,
+            password:'',
+            password_confirmation:''
         }
     },
      components:{
@@ -73,7 +75,25 @@ export default{
     },
     methods:{
         async updatepassword(){
-            await axios.post
+            if(this.password!=this.password_confirmation){
+                alert('Make sure password fields match')
+                return
+            }
+
+            await axios.post('https://www.app.a1tradefx.com/backend/public/api/update_password/'+this.$store.state.user.id,{
+             password:this.password,
+             password_confirmation:this.password_confirmation
+          },{
+               headers:{
+                Authorization: `Bearer ${this.$store.state.token}`
+                }
+          }).then((res)=>{
+              this.password = ''
+                this.password_confirmation =''
+              alert('Password has successfully been updated')
+          }).catch(()=>{
+              alert('oops, something went wrong')
+          });
         }
     }   
 }

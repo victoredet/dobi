@@ -37,11 +37,10 @@
                         <h4>My Active AI robot trades</h4>
                     </div>
                     <div class="deposit-list row">
-                        <div v-for="plan in plans" :key="plan.id" class="col-md-3 col-11 m-2 border-2 card py-2">
-                           <h4 class="text-primary">{{plan.plan}}</h4>
-                           <p>Amount: ${{plan.amount}}</p>
-                           <p>Daily count: {{plan.count}}</p>
-                           <p>Profit: {{plan.profit}}</p>
+                        <div v-for="signal in signals" :key="signal.id" class="col-md-3 col-11 m-2 border-2 card py-2">
+                           <p>Amount: ${{signal.price}}</p>
+                           <p>Daily count: {{signal.count}}</p>
+                           <p>Profit: {{signal.profit}}</p>
                            <!-- <button class="btn btn-primary text-white">Upgrade</button> -->
                         </div>
                     </div>
@@ -84,16 +83,18 @@ export default{
               return
           }
           await axios.post('https://www.app.a1tradefx.com/backend/public/api/buy_signal/'+this.$store.state.user.id,{
-              amount:this.amount,
+              price:this.amount,
           },{
                headers:{
                 Authorization: `Bearer ${this.$store.state.token}`
                 }
           }).then((res)=>{
-              this.plans = res.data
               this.amount = 0
+                this.signals =res.data
               alert('Congratulations! you have subcribed to a new contract')
-          })
+          }).catch(()=>{
+              alert('oops, something went wrong')
+          });
       }
        
     },
@@ -103,7 +104,7 @@ export default{
           Authorization: `Bearer ${this.$store.state.token}`
         }
       }).then((res)=>{
-        this.plans=res.data
+        this.signals=res.data
       })
     },
 }
