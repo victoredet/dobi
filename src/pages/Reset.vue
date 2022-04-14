@@ -34,12 +34,13 @@ export default{
     data(){
         return{
             password:'',
-            password_confirmation:''
+            password_confirmation:'',
+            id:this.$route.params.id
         }
     },
     methods:{
          async reset(){
-                await axios.post('https://www.app.a1tradefx.com/backend/public/api/reset_password',
+                await axios.post('https://www.app.a1tradefx.com/backend/public/api/update_password'+this.id,
                  { 
                     password:this.password,
                     password_confirmation:this.password_confirmation 
