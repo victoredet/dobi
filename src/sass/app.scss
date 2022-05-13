@@ -1,5 +1,7 @@
-$secondary: #ffc107;
-$primary:#124f8f;
+$primary: #e42575;
+$secondary: #4116C0;
+
+$border-width:0.2px;
 
 $input-focus-color: none ;
 $input-focus-box-shadow: none ;
@@ -8,16 +10,36 @@ $btn-box-shadow:none;
 $btn-active-box-shadow:none;       
 $btn-focus-box-shadow:none;
 $btn-focus-width: none;
-@import "../../node_modules/bootstrap/scss/bootstrap.scss";
- 
+
+@import "../../node_modules/bootstrap/scss/functions";
+
 @import "../../node_modules/bootstrap/scss/variables";
 @import "../../node_modules/bootstrap/scss/mixins";
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
+@import "../../node_modules/bootstrap/scss/root";
+@import "../../node_modules/bootstrap/scss/reboot";
+@import "../../node_modules/bootstrap/scss/type";
+@import "../../node_modules/bootstrap/scss/images";
+@import "../../node_modules/bootstrap/scss/containers";
+@import "../../node_modules/bootstrap/scss/grid";
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;900&display=swap');
 body{
-    font-family: 'Poppins', sans-serif;
-    background-color: #f0f0f0;
+    background-color: #120d18;
 }
-a{
-    text-decoration: none;
+.btn__primary:hover{
+    background: $primary;
+}
+.btn__primary{
+    cursor: pointer;
+}
+.side-link:hover{
+    background-color: $primary;
+}
+.side-bar{
+	overflow: scroll;
+}
+.nav-top{
+	background: #1c1326;
 }
