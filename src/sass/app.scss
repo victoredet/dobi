@@ -1,7 +1,7 @@
 $primary: #e42575;
-$secondary: #4116C0;
+$secondary: #5b5858;
 
-$border-width:0.2px;
+$border-width:1px;
 
 $input-focus-color: none ;
 $input-focus-box-shadow: none ;
@@ -43,3 +43,13 @@ body{
 .nav-top{
 	background: #1c1326;
 }
+.coming-soon{
+    overflow: scroll;
+}
+.coming-soon::-webkit-scrollbar {
+    display: none;
+  }
+  .coming-soon {
+    -ms-overflow-style: none;  
+    scrollbar-width: none;   
+  }

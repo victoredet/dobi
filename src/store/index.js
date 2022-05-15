@@ -3,7 +3,8 @@ import Vuex from 'vuex'
 export default new Vuex.Store({
     state:{
         token:'',
-        user:{}
+        user:{},
+        navShow:'d-none'
     },
     mutations:{
 
@@ -17,6 +18,14 @@ export default new Vuex.Store({
         updateUserDetails(state, payload){
             state.user.account = payload.account
             state.user.profit = payload.profit
+        },
+        showNavShow(state, payload){
+            state.navShow = payload
+            console.log(payload)
+        },
+        hideNavShow(state, payload){
+            state.navShow = payload
+            console.log(state.navShow)
         },
         localUser(state, user){
             state.user = user.user

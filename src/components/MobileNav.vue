@@ -1,5 +1,5 @@
 <template>
-   <div class="d-none d-md-block col-2  vh-100 border-secondary border-end">
+    <div :class="this.$store.state.navShow" class=" animate__animated animate__backInLeft  vh-100 col-12 d-md-none">
 			<div class="container text-primary ">
 				<div class="p-1 my-2 border-secondary border rounded side-link">
 					<p class="m-1 fw-bold text-white">Dashboard</p>
@@ -22,33 +22,8 @@
  			</div>
 		</div>
 </template>
-<script >
+<script>
 export default{
-    name:'Nav',
-    data(){
-        return{
-            
-        }
-    },
-    async mounted(){
-      if(this.$store.state.user.email=='admin@gmail.com'){
-        this.$router.push('/admin')
-      }
-    },
-    methods:{
-      logout(){
-        this.$store.commit('logoutUser')
-        localStorage.setItem('@user', JSON.stringify(''));
-        this.$router.push('/login');
-      }
-    }
+  
 }
 </script>
-<style scoped>
-.r-item-box:hover{
-  background: #124f8f;
-  color:white;
-  padding-left: 2rem;
-  cursor: pointer;
-}
-</style>
