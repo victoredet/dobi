@@ -1,9 +1,10 @@
 <template>
-    <div class="dashboard d-flex">
-        <div class="d-none d-md-block col-md-2">
+    <div class=" deposit">
+        <TopBar/>
+        <div class="d-flex">
             <Nav/>
-        </div>
-        <div class="col-md-10 col-12 content animate__animated animate__bounce vh-100 p-4">
+            <MobileNav/>
+        <div class="col-md-10 col-12 content animate__animated animate__bounce vh-100 p-4"> 
             <div class="col-md-9 mx-auto ">
                 <div class="col-12 bg-primary p-3 d-flex card shadow-sm m-2">
                     <div class="col-10">
@@ -48,20 +49,22 @@
                 </div>
             </div> 
         </div>
-        <Bottom/>
+        </div>
     </div>
+
 </template>
 
 <script>
 import axios from 'axios';
 import Nav from '../components/Nav.vue'
 import Bottom from '../components/Bottom.vue';
+import TopBar from '../components/TopBar.vue';
 
 export default{
     name:'Deposit',
      components:{
     Nav,
-    Bottom
+    TopBar
     },
      data(){
     return{

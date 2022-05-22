@@ -2,22 +2,22 @@
     <div :class="this.$store.state.navShow" class=" animate__animated animate__backInLeft  vh-100 col-12 d-md-none">
 			<div class="container text-primary ">
 				<div class="p-1 my-2 border-secondary border rounded side-link">
-					<p class="m-1 fw-bold text-white">Dashboard</p>
+					<router-link to="/dashbord" class="text-white">Dashboard</router-link>
 				</div>
 				<div class="p-1 my-2 border-secondary border rounded side-link">
-					<p class="m-1 fw-bold text-white">Deposit</p>
+					<router-link to="/deposit" class="text-white">Deposit</router-link>
 				</div>
 				<div class="p-1 my-2 border-secondary border rounded side-link">
-					<p class="m-1 fw-bold text-white">Withdraw</p>
+					<router-link to="/withdraw" class="text-white">Withdraw</router-link>
 				</div>
 				<div class="p-1 my-2 border-secondary border rounded side-link">
-					<p class="m-1 fw-bold text-white">Contracts</p>
+					<router-link to="/dashboard" class="text-white">Dashboard</router-link>
 				</div>
 				<div class="p-1 my-2 border-secondary border rounded side-link">
-					<p class="m-1 fw-bold text-white">History</p>
+					<router-link to="/dashbord" class="text-white">Dashboard</router-link>
 				</div>
 				<div class="p-1 my-2 border-secondary border rounded side-link">
-					<p class="m-1 fw-bold text-white">Log Out</p>
+					<router-link to="/login" class="text-white">Sign Out</router-link>
 				</div>
  			</div>
 		</div>

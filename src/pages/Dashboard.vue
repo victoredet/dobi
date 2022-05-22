@@ -1,14 +1,13 @@
 <template>
-<div class="body">
+<div class="body vh-100" >
 	<div class="d-none d-md-block nav-top text-center text-white">
-		prices
+		{{new_now}}
 	</div>
 	<TopBar/>
 	<div class="d-flex">
 		<Nav/>
 		<MobileNav/>
-		<div class="col-12 col-md-10">
-			<div class="col-12 text-center"><p class="text-primary"><span class="fa fa-clock"></span> {{new_now}}*</p> </div>
+		<div class="col-12 col-md-10 vh-100">
 			<!-- user details  -->
 			 <div class="d-flex col-11 mx-auto">
 				 <div class="col-md-6  container   m-2 py-2 text-white shadow border border-white rounded">
@@ -44,7 +43,7 @@
 		</div>
 	</div> 
 	<div class="position-fixed bottom-0 col-12">
-		<iframe src="https://bit2me.com/widget/crypto-carousel/v1" style="display:block;width:100%;height:40px;" frameborder="0"></iframe>
+		<iframe src="https://bit2me.com/widget/crypto-carousel/v1" style="display:block;width:100%;height:40px; background-color: #f8f8f8;" frameborder="0"></iframe>
 	</div>
 </div>
 </template>

@@ -1,69 +1,70 @@
 <template>
-    <div class="dashboard d-flex">
-        <div class=" d-none d-md-block col-md-2">
+    <div class="contracts">
+        <TopBar/>
+        <div class=" d-flex">
             <Nav/>
-        </div>
-        <div class="col-md-10 col-12 content animate__animated animate__bounce  vh-100 p-4">
-            <div class="col-md-9 col-12 mx-auto ">
-                <div class="col-12 p-3 bg-primary card shadow-sm m-2">
-                    <div class="text-center ">
-                        <h4 class="text-white ">Our Contracts are best for you!</h4>
+            <MobileNav/>
+            <div class="col-md-10 col-12 content animate__animated animate__bounce  vh-100 p-4">
+                <div class="col-md-9 col-12 mx-auto ">
+                    <div class="col-12 p-3 bg-primary card shadow-sm m-2">
+                        <div class="text-center ">
+                            <h4 class="text-white ">Our Contracts are best for you!</h4>
+                        </div>
+                    
                     </div>
-                   
-                </div>
 
-                <div class="col-12 p-3 d-flex card shadow-sm m-2">
-                    <div class=" fund-account bg-white shadow-sm">
-                        <div class="row p-2">
-                            <div class="">
-                            <h4 class="fw-bold m-1">Buy A Contract </h4>
-                                <div class="withdraw-form">
-                                    <form @submit.prevent="buyPlan" class="col-12">
-                                    <div class="form-group d-flex">
-                                        <p class="py-auto m-1">Amount: </p>
-                                        <input class="form-control" v-model="amount" type="number" placeholder="Enter amount in USD" >
-                                    </div>                  
-                                        <p class="small text-danger text-center">*your amount should be equal to or lesser than your account balance</p>
-                                    <div class="">
-                                         <button type="submit" class="text-white btn btn-primary m-1 col-12 btn-lg">Proceed</button>
+                    <div class="col-12 p-3 d-flex card shadow-sm m-2">
+                        <div class=" fund-account bg-white shadow-sm">
+                            <div class="row p-2">
+                                <div class="">
+                                <h4 class="fw-bold m-1">Buy A Contract </h4>
+                                    <div class="withdraw-form">
+                                        <form @submit.prevent="buyPlan" class="col-12">
+                                        <div class="form-group d-flex">
+                                            <p class="py-auto m-1">Amount: </p>
+                                            <input class="form-control" v-model="amount" type="number" placeholder="Enter amount in USD" >
+                                        </div>                  
+                                            <p class="small text-danger text-center">*your amount should be equal to or lesser than your account balance</p>
+                                        <div class="">
+                                            <button type="submit" class="text-white btn btn-primary m-1 col-12 btn-lg">Proceed</button>
+                                        </div>
+                                        </form>
                                     </div>
-                                    </form>
+                                </div>
+                                <div class="col m-1">  
+                                <div v-if="amount>999 && amount<29000" class="">
+                                    <h4 class="text-center m-1 ">Gold Plan</h4>
+                                </div>
+                                <div v-if="amount>30000 && amount<100000" class="">
+                                    <h4 class="text-center m-1 ">Platinum</h4>
+                                </div>
+                                <div v-if="amount>100000" class="">
+                                    <h4 class="text-center m-1 "> Diamond Plan</h4>
+                                </div>
                                 </div>
                             </div>
-                            <div class="col m-1">  
-                            <div v-if="amount>999 && amount<29000" class="">
-                                <h4 class="text-center m-1 ">Gold Plan</h4>
-                            </div>
-                            <div v-if="amount>30000 && amount<100000" class="">
-                                <h4 class="text-center m-1 ">Platinum</h4>
-                            </div>
-                            <div v-if="amount>100000" class="">
-                                <h4 class="text-center m-1 "> Diamond Plan</h4>
-                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-12 p-3 d-flex card shadow-sm m-2">
+                        <div class="col-10">
+                            <h4>My contracts</h4>
+                        </div>
+                        <div class="deposit-list row">
+                            <div v-for="plan in plans" :key="plan.id" class="col-md-3 col-11 m-2 border-2 card py-2">
+                            <h4 class="text-primary">{{plan.plan}}</h4>
+                            <p>Amount: ${{plan.amount}}</p>
+                            <p>Daily count: {{plan.count}}</p>
+                            <p>Profit: {{plan.profit}}</p>
+                            <!-- <button class="btn btn-primary text-white">Upgrade</button> -->
                             </div>
                         </div>
                     </div>
-                </div>
-
-
-
-                <div class="col-12 p-3 d-flex card shadow-sm m-2">
-                    <div class="col-10">
-                        <h4>My contracts</h4>
-                    </div>
-                    <div class="deposit-list row">
-                        <div v-for="plan in plans" :key="plan.id" class="col-md-3 col-11 m-2 border-2 card py-2">
-                           <h4 class="text-primary">{{plan.plan}}</h4>
-                           <p>Amount: ${{plan.amount}}</p>
-                           <p>Daily count: {{plan.count}}</p>
-                           <p>Profit: {{plan.profit}}</p>
-                           <!-- <button class="btn btn-primary text-white">Upgrade</button> -->
-                        </div>
-                    </div>
-                </div>
-            </div> 
+                </div> 
+            </div>
         </div>
-        <Bottom/>
     </div>
 </template>
 
@@ -71,13 +72,17 @@
 import Nav from '../components/Nav.vue'
 import axios from 'axios'
 import Bottom from '../components/Bottom.vue'
+import TopBar from '../components/TopBar.vue'
+import MobileNav from '../components/MobileNav.vue'
 
 
 export default{
     name:'Contract',
      components:{
     Nav,
-    Bottom
+    Bottom,
+    TopBar,
+    MobileNav
 },
      data(){
     return{

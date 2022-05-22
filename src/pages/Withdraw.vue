@@ -1,8 +1,9 @@
 <template>
-    <div class="dashboard d-flex">
-        <div class="d-none d-md-block col-2">
+    <div class="withdraw">
+        <TopBar/>
+        <div class="d-flex">
             <Nav/>
-        </div>
+            <MobileNav/>
         <div class="col-md-10 content animate__animated animate__bounce p-4 vh-100">
             <div class="col-md-9 col-12 mx-auto ">
                 <div class="col-12 bg-primary p-3 d-flex card shadow-sm m-2">
@@ -55,6 +56,7 @@
             </div> 
         </div>
         <Bottom/>
+        </div>
     </div>
 </template>
 
@@ -62,13 +64,17 @@
 import Nav from '../components/Nav.vue'
 import axios from 'axios'
 import Bottom from '../components/Bottom.vue'
+import TopBar from '../components/TopBar.vue'
+import MobileNav from '../components/MobileNav.vue'
 
 
 export default{
     name:'Withdraw',
      components:{
     Nav,
-    Bottom
+    Bottom,
+    TopBar,
+    MobileNav
 },
      data(){
     return{
